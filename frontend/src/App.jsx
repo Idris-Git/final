@@ -8,6 +8,8 @@ import HospitalDashboard from "./pages/hospital/HospitalDashboard.jsx";
 import HospitalProfile from "./pages/hospital/HospitalProfile.jsx";
 import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
 import AdminProfile from "./pages/admin/AdminProfile.jsx";
+import Devfooter from "./components/Devfooter.jsx";
+
 
 function App() {
   return (
@@ -25,7 +27,9 @@ function App() {
 
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/profile" element={<AdminProfile />} />
+
       </Routes>
+      <Devfooter />
     </BrowserRouter>
   );
 }

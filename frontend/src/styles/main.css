@@ -39,9 +39,7 @@ nav a:hover {
 }
 
 /* Page container */
-div {
-  padding: 20px;
-}
+
 
 /* Card */
 .card {
@@ -81,8 +79,3 @@ form {
   margin-bottom: 20px;
 }
 
-/* Images */
-img {
-  margin: 10px 10px 10px 0;
-  border-radius: 8px;
-}
