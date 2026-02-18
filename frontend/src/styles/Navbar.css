@@ -1,0 +1,34 @@
+
+body {
+  background-color: #f4f6f9;
+  color: #333;
+}
+
+/* Navbar */
+nav {
+  background-color: #b30000;
+  padding: 15px;
+  color: white;
+}
+
+nav h2 {
+  margin-bottom: 10px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+

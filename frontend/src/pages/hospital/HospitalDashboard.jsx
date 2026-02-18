@@ -1,3 +1,5 @@
+import "../../styles/Hospital.css";
+
 const HospitalDashboard = () => {
   return (
     <div>

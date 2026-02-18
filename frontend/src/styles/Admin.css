@@ -1,0 +1,23 @@
+div {
+  padding: 10px;
+}
+
+body {
+  background-color: #f4f6f9;
+  color: #333;
+}
+
+/* Buttons */
+button {
+  background-color: #b30000;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+button:hover {
+  background-color: #800000;
+}

@@ -1,3 +1,5 @@
+import "../../styles/Admin.css";
+
 const AdminDashboard = () => {
   return (
     <div>

@@ -1,3 +1,5 @@
+import "../../styles/Admin.css";
+
 const AdminProfile = () => {
   return (
     <div>

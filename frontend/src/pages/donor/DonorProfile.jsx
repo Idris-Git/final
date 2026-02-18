@@ -1,3 +1,5 @@
+import "../../styles/Donor.css";
+
 const DonorProfile = () => {
   return (
     <div>
