@@ -9,16 +9,16 @@ const DonorDashboard = () => {
   ];
 
   return (
-    <div>
+    <div className="d-dash">
       <h2>Donor Dashboard</h2>
 
       <p>Status: {active ? "Active" : "Inactive"}</p>
       <button onClick={() => setActive(!active)}>
         Change Status
       </button>
-
+      <br /> <br />
       <h3>Blood Requests</h3>
-
+      <br />
       {requests.map((req) => (
         <div key={req.id}>
           <p>Patient: {req.patient}</p>
@@ -26,6 +26,7 @@ const DonorDashboard = () => {
           <p>Emergency: {req.emergency}</p>
           <button>Accept</button>
           <hr />
+          <br />
         </div>
       ))}
     </div>

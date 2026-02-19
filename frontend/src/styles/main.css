@@ -5,3 +5,7 @@
   box-sizing: border-box;
   font-family: Arial, sans-serif;
 }
+body {
+  background-color: #eecaca71;
+  color: #000000;
+}

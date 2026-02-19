@@ -1,7 +1,19 @@
 
-body {
-  background-color: #f4f6f9;
-  color: #333;
+
+.d-dash {
+  display: flex;
+  flex-direction: column;
+  
+  border-top: 1px solid #e9d8d8e6;
+  border-left: 1px solid #e9d8d8e6;
+  box-shadow: 4px 4px 4px rgba(148, 86, 86, 0.429);
+  border-radius: 50px;
+  background-color: #ca37373f;
+  backdrop-filter: blur(5px);
+  padding: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+  width: 50%;
 }
 
 
@@ -14,6 +26,7 @@ button {
   border-radius: 5px;
   cursor: pointer;
   margin-top: 5px;
+  width: 5rem;
 }
 
 button:hover {

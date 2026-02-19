@@ -2,17 +2,17 @@ import { Link } from "react-router-dom";
 import "../styles/Navbar.css";
 const Navbar = () => {
   return (
-    <nav>
+    <div id="navigation">
       <h2>Blood Donation System</h2>
-
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li>Profile</li>
-        <li>Dashbord</li>
-      </ul>
-
-      <hr />
-    </nav>
+      <nav id="linksnav">
+        <ul >
+          <li><Link to="/">Home</Link></li>
+          <li>Profile</li>
+          <li>Dashbord</li>
+        </ul>
+      </nav>
+    </div>
+    
   );
 };
 

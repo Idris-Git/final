@@ -1,30 +1,24 @@
-
-body {
-  background-color: #f4f6f9;
-  color: #333;
-}
-
-/* Navbar */
-nav {
-  background-color: #b30000;
-  padding: 15px;
-  color: white;
-}
-
-nav h2 {
+#navigation {
+  background-color: #8d0d0d;
+  color: white; 
   margin-bottom: 10px;
+  padding: 1em;
 }
 
 nav ul {
+  
   list-style: none;
   display: flex;
   gap: 20px;
+  
 }
 
-nav a {
-  text-decoration: none;
+#linksnav , #linksnav a {
   color: white;
   font-weight: bold;
+  align-items: center;
+  align-self: center;
+  padding: 15px;
 }
 
 nav a:hover {
