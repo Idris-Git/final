@@ -2,6 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.routes.js";
 import connectMongoDB  from "./db/connectMongoDB.js";
+import dns from "dns";
+dns.setServers(["8.8.4.4", "8.8.8.8"]);
+
 
 dotenv.config();
 const app = express();
