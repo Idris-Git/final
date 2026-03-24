@@ -5,12 +5,15 @@ const hospitalSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-
   address: {
     type: String,
     required: true
   },
-    password: {
+  contact: {
+    type: String,
+    required: true
+  },
+  password: {
     type: String,
     required: true,
     minLength: 6,
@@ -19,8 +22,12 @@ const hospitalSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true
+  },
+  approved: {
+    type: Boolean,
+    default: false
   }
-});
+}, { timestamps: true });
 
 const Hospital = mongoose.model("Hospital", hospitalSchema);
 export default Hospital;
