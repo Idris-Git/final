@@ -1,4 +1,4 @@
-import e from "express";
+import express from "express";
 import mongoose from "mongoose";
 
 const donorSchema = new mongoose.Schema({
@@ -42,5 +42,5 @@ const donorSchema = new mongoose.Schema({
     unique: true
   }
 });
-
-export default mongoose.model("Donor", donorSchema);
+const Donor = mongoose.model("Donor", donorSchema);
+export default Donor;
