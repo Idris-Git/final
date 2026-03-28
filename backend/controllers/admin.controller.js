@@ -5,6 +5,7 @@ import BloodRequest from "../models/bloodR.modle.js";
 import Post from "../models/post.model.js";
 import bcrypt from "bcryptjs";
 import { generateTokenAndSetCookie } from "../lib/utils/generateToken.js";
+import cloudinary from "../lib/utils/cloudinary.js";
 
 // ---- AUTH ----
 
@@ -165,10 +166,20 @@ export const getReports = async (req, res) => {
 
 export const createPost = async (req, res) => {
     try {
-        const { title, content } = req.body;
+        const { title, content, image } = req.body;
+
+        let imageUrl = "";
+        if (image) {
+            const uploaded = await cloudinary.uploader.upload(image, {
+                folder: "blood-posts",
+            });
+            imageUrl = uploaded.secure_url;
+        }
+
         const post = new Post({
             title,
             content,
+            image: imageUrl,
             adminId: req.user._id
         });
         await post.save();
@@ -185,6 +196,13 @@ export const deletePost = async (req, res) => {
         if (!post) {
             return res.status(404).json({ error: "Post not found" });
         }
+
+        // Delete image from cloudinary if exists
+        if (post.image) {
+            const publicId = post.image.split("/").pop().split(".")[0];
+            await cloudinary.uploader.destroy(`blood-posts/${publicId}`);
+        }
+
         res.status(200).json({ message: "Post deleted" });
     } catch (error) {
         console.log("Error in deletePost:", error.message);

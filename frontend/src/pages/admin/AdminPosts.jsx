@@ -4,6 +4,8 @@ import "../../styles/Admin.css";
 const AdminPosts = () => {
   const [posts, setPosts] = useState([]);
   const [formData, setFormData] = useState({ title: "", content: "" });
+  const [image, setImage] = useState(null);
+  const [preview, setPreview] = useState("");
   const [message, setMessage] = useState("");
 
   const fetchPosts = async () => {
@@ -20,18 +22,39 @@ const AdminPosts = () => {
     fetchPosts();
   }, []);
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) {
+      setImage(null);
+      setPreview("");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImage(reader.result);
+      setPreview(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
     try {
+      const body = { ...formData };
+      if (image) body.image = image;
+
       const res = await fetch("/api/admin/posts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(body),
       });
       if (res.ok) {
         setMessage("Post created!");
         setFormData({ title: "", content: "" });
+        setImage(null);
+        setPreview("");
         fetchPosts();
       } else {
         const data = await res.json();
@@ -75,6 +98,9 @@ const AdminPosts = () => {
             required
             rows={4}
           />
+          <label>Image (optional)</label>
+          <input type="file" accept="image/*" onChange={handleImageChange} />
+          {preview && <img src={preview} alt="Preview" className="img-preview" />}
           <button type="submit" className="btn-full">Create Post</button>
         </form>
 
@@ -86,6 +112,7 @@ const AdminPosts = () => {
         ) : (
           posts.map((post) => (
             <div key={post._id} className="request-item">
+              {post.image && <img src={post.image} alt={post.title} className="post-thumb" />}
               <h4>{post.title}</h4>
               <p>{post.content}</p>
               <p className="date">{new Date(post.createdAt).toLocaleDateString()}</p>

@@ -9,6 +9,10 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  image: {
+    type: String,
+    default: ""
+  },
   adminId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Admin",
