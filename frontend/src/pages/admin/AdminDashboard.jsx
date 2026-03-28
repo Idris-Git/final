@@ -1,23 +1,72 @@
+import { useState, useEffect } from "react";
+import { useAuth } from "../../context/AuthContext";
 import "../../styles/Admin.css";
 
 const AdminDashboard = () => {
+  const { user } = useAuth();
+  const [reports, setReports] = useState(null);
+
+  useEffect(() => {
+    const fetchReports = async () => {
+      try {
+        const res = await fetch("/api/admin/reports");
+        const data = await res.json();
+        if (res.ok) setReports(data);
+      } catch {
+        // ignore
+      }
+    };
+    fetchReports();
+  }, []);
+
   return (
-    <div className="admin-d">
-      <h2>Admin Dashboard</h2>
+    <div className="page">
+      <div className="card">
+        <h2>Admin Dashboard</h2>
+        <p>Welcome, <strong>{user?.name}</strong></p>
 
-      <h3>Manage Users</h3>
-      <div id="m-users"><p>Donor 1</p>
-      <button>Remove</button>
+        <hr />
+        <h3>System Reports</h3>
 
-      <p>Hospital 1</p>
-      <button>Remove</button>
+        {reports ? (
+          <div className="reports-grid">
+            <div className="report-box">
+              <h4>{reports.totalDonors}</h4>
+              <p>Total Donors</p>
+            </div>
+            <div className="report-box">
+              <h4>{reports.activeDonors}</h4>
+              <p>Active Donors</p>
+            </div>
+            <div className="report-box">
+              <h4>{reports.totalHospitals}</h4>
+              <p>Total Hospitals</p>
+            </div>
+            <div className="report-box">
+              <h4>{reports.approvedHospitals}</h4>
+              <p>Approved Hospitals</p>
+            </div>
+            <div className="report-box">
+              <h4>{reports.totalRequests}</h4>
+              <p>Total Requests</p>
+            </div>
+            <div className="report-box">
+              <h4>{reports.pendingRequests}</h4>
+              <p>Pending</p>
+            </div>
+            <div className="report-box">
+              <h4>{reports.acceptedRequests}</h4>
+              <p>Accepted</p>
+            </div>
+            <div className="report-box">
+              <h4>{reports.completedDonations}</h4>
+              <p>Completed</p>
+            </div>
+          </div>
+        ) : (
+          <p>Loading reports...</p>
+        )}
       </div>
-      <br />
-      <br />
-      <hr />
-      <h3>Reports</h3>
-      <p>Total Donors: 20</p>
-      <p>Total Requests: 15</p>
     </div>
   );
 };

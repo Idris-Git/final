@@ -1,6 +1,7 @@
 import express from "express";
 import { protectRoute, authorizeRoles } from "../middleware/protectRouts.js";
 import {
+    updateProfile,
     updateStatus,
     getMatchingRequests,
     acceptRequest,
@@ -8,6 +9,9 @@ import {
 } from "../controllers/donor.controller.js";
 
 const router = express.Router();
+
+// Update profile
+router.put("/profile", protectRoute, authorizeRoles("donor"), updateProfile);
 
 // Update active/inactive status
 router.put("/status", protectRoute, authorizeRoles("donor"), updateStatus);

@@ -1,35 +1,31 @@
-.admin-d {
-  display: flex;
-  flex-direction: column;
-  
-  border-top: 1px solid #e9d8d8e6;
-  border-left: 1px solid #e9d8d8e6;
-  box-shadow: 4px 4px 4px rgba(148, 86, 86, 0.429);
-  border-radius: 50px;
-  background-color: #ca37373f;
-  backdrop-filter: blur(5px);
-  padding: 2rem;
+/* Admin reports grid */
+.reports-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
   margin-top: 1rem;
-  margin-bottom: 4rem;
-  width: 50%;
-}
-#m-users {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  margin-top: 1rem;
-}
-/* Buttons */
-button {
-  background-color: #b30000;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 5px;
 }
 
-button:hover {
-  background-color: #800000;
+.report-box {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.report-box h4 {
+  font-size: 1.8rem;
+  color: #8d0d0d;
+}
+
+.report-box p {
+  font-size: 0.8rem;
+  color: #555;
+  margin-top: 4px;
+}
+
+@media (max-width: 600px) {
+  .reports-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

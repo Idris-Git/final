@@ -1,5 +1,31 @@
 import Donor from "../models/donor.model.js";
 import BloodRequest from "../models/bloodR.modle.js";
+import bcrypt from "bcryptjs";
+
+// Update donor profile
+export const updateProfile = async (req, res) => {
+    try {
+        const { name, age, contact, address, password } = req.body;
+        const updates = {};
+        if (name) updates.name = name;
+        if (age) updates.age = age;
+        if (contact) updates.contact = contact;
+        if (address) updates.address = address;
+        if (password) {
+            if (password.length < 6) {
+                return res.status(400).json({ error: "Password must be at least 6 characters long" });
+            }
+            const salt = await bcrypt.genSalt(10);
+            updates.password = await bcrypt.hash(password, salt);
+        }
+
+        const donor = await Donor.findByIdAndUpdate(req.user._id, updates, { new: true }).select("-password");
+        res.status(200).json(donor);
+    } catch (error) {
+        console.log("Error in updateProfile:", error.message);
+        res.status(500).json({ error: "Server error" });
+    }
+};
 
 // Update availability status (active/inactive)
 export const updateStatus = async (req, res) => {

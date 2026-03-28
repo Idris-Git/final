@@ -1,0 +1,59 @@
+.auth-card {
+  border-top: 1px solid #e9d8d8e6;
+  border-left: 1px solid #e9d8d8e6;
+  box-shadow: 4px 4px 4px rgba(148, 86, 86, 0.429);
+  border-radius: 20px;
+  background-color: #ca37373f;
+  backdrop-filter: blur(5px);
+  padding: 2rem;
+  margin-top: 2rem;
+  width: 90%;
+  max-width: 420px;
+}
+
+.auth-card h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #b30000;
+}
+
+.tab {
+  flex: 1;
+  background-color: transparent;
+  color: #8d0d0d;
+  border: none;
+  border-radius: 0;
+  padding: 10px;
+  cursor: pointer;
+  margin: 0;
+  font-weight: bold;
+}
+
+.tab.active {
+  background-color: #8d0d0d;
+  color: white;
+}
+
+.tab:hover:not(.active) {
+  background-color: rgba(141, 13, 13, 0.15);
+}
+
+.auth-link {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.auth-link a {
+  color: #8d0d0d;
+  font-weight: bold;
+}

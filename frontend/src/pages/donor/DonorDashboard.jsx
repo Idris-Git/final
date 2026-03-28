@@ -1,34 +1,91 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAuth } from "../../context/AuthContext";
 import "../../styles/Donor.css";
-const DonorDashboard = () => {
-  const [active, setActive] = useState(true);
 
-  const requests = [
-    { id: 1, patient: "Ali", bloodType: "O+", emergency: "High" },
-    { id: 2, patient: "Sara", bloodType: "A+", emergency: "Medium" }
-  ];
+const DonorDashboard = () => {
+  const { user, setUser } = useAuth();
+  const [requests, setRequests] = useState([]);
+  const [message, setMessage] = useState("");
+
+  const fetchRequests = async () => {
+    try {
+      const res = await fetch("/api/donor/requests");
+      const data = await res.json();
+      if (res.ok) setRequests(data);
+    } catch {
+      // ignore
+    }
+  };
+
+  useEffect(() => {
+    fetchRequests();
+  }, []);
+
+  const toggleStatus = async () => {
+    try {
+      const res = await fetch("/api/donor/status", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ active: !user.active }),
+      });
+      const data = await res.json();
+      if (res.ok) setUser(data);
+    } catch {
+      // ignore
+    }
+  };
+
+  const acceptRequest = async (id) => {
+    setMessage("");
+    try {
+      const res = await fetch(`/api/donor/requests/${id}/accept`, {
+        method: "PUT",
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setMessage("Request accepted!");
+        fetchRequests();
+      } else {
+        setMessage(data.error || "Failed to accept");
+      }
+    } catch {
+      setMessage("Something went wrong");
+    }
+  };
 
   return (
-    <div className="d-dash">
-      <h2>Donor Dashboard</h2>
+    <div className="page">
+      <div className="card">
+        <h2>Donor Dashboard</h2>
+        <p>Welcome, <strong>{user?.name}</strong></p>
+        <p>Blood Type: <strong>{user?.bloodType}</strong></p>
+        <p>Status: <strong className={user?.active ? "text-green" : "text-red"}>
+          {user?.active ? "Active" : "Inactive"}
+        </strong></p>
+        <button onClick={toggleStatus}>
+          {user?.active ? "Set Inactive" : "Set Active"}
+        </button>
 
-      <p>Status: {active ? "Active" : "Inactive"}</p>
-      <button onClick={() => setActive(!active)}>
-        Change Status
-      </button>
-      <br /> <br />
-      <h3>Blood Requests</h3>
-      <br />
-      {requests.map((req) => (
-        <div key={req.id}>
-          <p>Patient: {req.patient}</p>
-          <p>Blood Type: {req.bloodType}</p>
-          <p>Emergency: {req.emergency}</p>
-          <button>Accept</button>
-          <hr />
-          <br />
-        </div>
-      ))}
+        {message && <p className="msg">{message}</p>}
+
+        <hr />
+        <h3>Matching Blood Requests</h3>
+
+        {requests.length === 0 ? (
+          <p className="empty">No matching requests right now</p>
+        ) : (
+          requests.map((req) => (
+            <div key={req._id} className="request-item">
+              <p><strong>Patient:</strong> {req.patientName} (Age: {req.patientAge})</p>
+              <p><strong>Blood Type:</strong> {req.bloodType}</p>
+              <p><strong>Emergency:</strong> <span className={`emergency-${req.emergencyLevel.toLowerCase()}`}>{req.emergencyLevel}</span></p>
+              <p><strong>Units Needed:</strong> {req.requiredUnits}</p>
+              <p><strong>Hospital:</strong> {req.hospitalId?.name} - {req.hospitalId?.address}</p>
+              <button onClick={() => acceptRequest(req._id)}>Accept</button>
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 };

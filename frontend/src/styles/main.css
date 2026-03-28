@@ -9,3 +9,166 @@ body {
   background-color: #eecaca71;
   color: #000000;
 }
+
+.page {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 70px);
+}
+
+/* Shared card style */
+.card {
+  border-top: 1px solid #e9d8d8e6;
+  border-left: 1px solid #e9d8d8e6;
+  box-shadow: 4px 4px 4px rgba(148, 86, 86, 0.429);
+  border-radius: 20px;
+  background-color: #ca37373f;
+  backdrop-filter: blur(5px);
+  padding: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  width: 90%;
+  max-width: 700px;
+}
+
+.card h2 {
+  margin-bottom: 0.5rem;
+}
+
+.card h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.card hr {
+  border: none;
+  border-top: 1px solid #d4a5a5;
+  margin: 1rem 0;
+}
+
+/* Request items */
+.request-item {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.request-item p {
+  margin: 3px 0;
+}
+
+/* Buttons */
+button {
+  background-color: #b30000;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 5px;
+  font-size: 0.9rem;
+}
+
+button:hover {
+  background-color: #800000;
+}
+
+.btn-full {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.btn-danger {
+  background-color: #666;
+}
+
+.btn-danger:hover {
+  background-color: #333;
+}
+
+.btn-group {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* Forms */
+input, select, textarea {
+  display: block;
+  width: 100%;
+  margin: 6px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+}
+
+textarea {
+  resize: vertical;
+}
+
+label {
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+  font-size: 0.85rem;
+}
+
+/* Status colors */
+.text-green { color: #1a8d1a; font-weight: bold; }
+.text-red { color: #b30000; font-weight: bold; }
+
+.emergency-low { color: #1a8d1a; font-weight: bold; }
+.emergency-medium { color: #cc8800; font-weight: bold; }
+.emergency-critical { color: #b30000; font-weight: bold; }
+
+.status-pending { color: #cc8800; font-weight: bold; }
+.status-accepted { color: #1a8d1a; font-weight: bold; }
+.status-completed { color: #555; font-weight: bold; }
+
+/* Messages */
+.msg {
+  padding: 8px;
+  border-radius: 5px;
+  margin: 8px 0;
+  text-align: center;
+  font-weight: bold;
+  color: #8d0d0d;
+}
+
+.msg.success { color: #1a8d1a; }
+.msg.error { color: #b30000; }
+
+.error-msg {
+  color: #b30000;
+  font-weight: bold;
+  margin: 8px 0;
+  text-align: center;
+}
+
+.empty {
+  color: #777;
+  font-style: italic;
+  margin: 1rem 0;
+}
+
+.date {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 5px;
+}
+
+.profile-info {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 0.5rem 0;
+}
+
+.profile-info p {
+  margin: 4px 0;
+}
