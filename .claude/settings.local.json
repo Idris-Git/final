@@ -3,7 +3,8 @@
     "allow": [
       "Bash(node backend/seed/adminSeed.js)",
       "Bash(timeout 8 node backend/server.js)",
-      "Bash(npx vite:*)"
+      "Bash(npx vite:*)",
+      "Bash(node -e \":*)"
     ]
   }
 }

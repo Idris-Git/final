@@ -1,5 +1,10 @@
+#logoAndname {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 #navigation {
-  background-color: #8d0d0d;
+  background-color: #0bb5df;
   color: white;
   padding: 0.8em 1em;
 }
@@ -25,4 +30,8 @@
 
 #linksnav a:hover {
   text-decoration: underline;
+}
+#logo {
+  width: 4rem;
+  margin-right: 10px;
 }

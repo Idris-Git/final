@@ -15,7 +15,9 @@ const Navbar = () => {
     <div id="navigation">
       <nav>
         <ul>
-          <li><h2>Blood Donation System</h2></li>
+          <li id="logoAndname">
+            <img id="logo" src="../src/assets/waridak.png" alt="Waridak Logo" />
+            <h2>Waridak</h2></li>
           <li id="linksnav"><Link to="/">Home</Link></li>
 
           {!user && (
