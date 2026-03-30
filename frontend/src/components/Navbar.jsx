@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import logo from "../assets/Waridak.png";
 import "../styles/Navbar.css";
 
 const Navbar = () => {
@@ -16,7 +17,7 @@ const Navbar = () => {
       <nav>
         <ul>
           <li id="logoAndname">
-            <img id="logo" src="../src/assets/waridak.png" alt="Waridak Logo" />
+            <img id="logo" src={logo} alt="Waridak Logo" />
             <h2>Waridak</h2></li>
           <li id="linksnav"><Link to="/">Home</Link></li>
 
