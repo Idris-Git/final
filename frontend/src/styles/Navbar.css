@@ -4,9 +4,13 @@
   gap: 0.5rem;
 }
 #navigation {
-  background-color: #0bb5df;
+  background-color: #08acd4;
   color: white;
+  backdrop-filter: blur(5px);
   padding: 0.8em 1em;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+
 }
 
 #navigation nav ul {
