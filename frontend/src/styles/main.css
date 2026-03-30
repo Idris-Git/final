@@ -20,11 +20,11 @@ body {
 
 /* Shared card style */
 .card {
-  border-top: 1px solid #e9d8d8e6;
-  border-left: 1px solid #e9d8d8e6;
-  box-shadow: 4px 4px 4px rgba(148, 86, 86, 0.429);
+  border-top: 1px solid #d8e8ede6;
+  border-left: 1px solid #d8e8ede6;
+  box-shadow: 4px 4px 4px rgba(8, 172, 212, 0.25);
   border-radius: 20px;
-  background-color: #ca37373f;
+  background-color: #08acd43f;
   backdrop-filter: blur(5px);
   padding: 2rem;
   margin-top: 1rem;
@@ -44,7 +44,7 @@ body {
 
 .card hr {
   border: none;
-  border-top: 1px solid #d4a5a5;
+  border-top: 1px solid #a5cdd4;
   margin: 1rem 0;
 }
 
@@ -62,7 +62,7 @@ body {
 
 /* Buttons */
 button {
-  background-color: #b30000;
+  background-color: #08acd4;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -73,7 +73,7 @@ button {
 }
 
 button:hover {
-  background-color: #800000;
+  background-color: #0690b0;
 }
 
 .btn-full {
@@ -120,11 +120,11 @@ label {
 
 /* Status colors */
 .text-green { color: #1a8d1a; font-weight: bold; }
-.text-red { color: #b30000; font-weight: bold; }
+.text-red { color: #08acd4; font-weight: bold; }
 
 .emergency-low { color: #1a8d1a; font-weight: bold; }
 .emergency-medium { color: #cc8800; font-weight: bold; }
-.emergency-critical { color: #b30000; font-weight: bold; }
+.emergency-critical { color: #08acd4; font-weight: bold; }
 
 .status-pending { color: #cc8800; font-weight: bold; }
 .status-accepted { color: #1a8d1a; font-weight: bold; }
@@ -137,14 +137,14 @@ label {
   margin: 8px 0;
   text-align: center;
   font-weight: bold;
-  color: #8d0d0d;
+  color: #08acd4;
 }
 
 .msg.success { color: #1a8d1a; }
-.msg.error { color: #b30000; }
+.msg.error { color: #08acd4; }
 
 .error-msg {
-  color: #b30000;
+  color: #08acd4;
   font-weight: bold;
   margin: 8px 0;
   text-align: center;
