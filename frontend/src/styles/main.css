@@ -120,11 +120,11 @@ label {
 
 /* Status colors */
 .text-green { color: #1a8d1a; font-weight: bold; }
-.text-red { color: #08acd4; font-weight: bold; }
+.text-red { color: #d32f2f; font-weight: bold; }
 
 .emergency-low { color: #1a8d1a; font-weight: bold; }
 .emergency-medium { color: #cc8800; font-weight: bold; }
-.emergency-critical { color: #08acd4; font-weight: bold; }
+.emergency-critical { color: #d32f2f; font-weight: bold; }
 
 .status-pending { color: #cc8800; font-weight: bold; }
 .status-accepted { color: #1a8d1a; font-weight: bold; }
@@ -141,10 +141,10 @@ label {
 }
 
 .msg.success { color: #1a8d1a; }
-.msg.error { color: #08acd4; }
+.msg.error { color: #d32f2f; }
 
 .error-msg {
-  color: #08acd4;
+  color: #d32f2f;
   font-weight: bold;
   margin: 8px 0;
   text-align: center;
@@ -171,4 +171,20 @@ label {
 
 .profile-info p {
   margin: 4px 0;
+}
+
+/* Notifications */
+.notif-unread {
+  border-left: 4px solid #08acd4;
+  background-color: rgba(8, 172, 212, 0.12);
+}
+
+.notif-msg {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.notif-details {
+  margin-top: 4px;
 }

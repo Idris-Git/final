@@ -10,6 +10,7 @@ import HospitalSignup from "./pages/HospitalSignup";
 
 import DonorDashboard from "./pages/donor/DonorDashboard";
 import DonorHistory from "./pages/donor/DonorHistory";
+import DonorNotifications from "./pages/donor/DonorNotifications";
 import DonorSettings from "./pages/donor/DonorSettings";
 
 import HospitalDashboard from "./pages/hospital/HospitalDashboard";
@@ -38,6 +39,7 @@ function App() {
 
         {/* Donor routes */}
         <Route path="/donor" element={<ProtectedRoute allowedRoles={["donor"]}><DonorDashboard /></ProtectedRoute>} />
+        <Route path="/donor/notifications" element={<ProtectedRoute allowedRoles={["donor"]}><DonorNotifications /></ProtectedRoute>} />
         <Route path="/donor/history" element={<ProtectedRoute allowedRoles={["donor"]}><DonorHistory /></ProtectedRoute>} />
         <Route path="/donor/settings" element={<ProtectedRoute allowedRoles={["donor"]}><DonorSettings /></ProtectedRoute>} />
 

@@ -1,8 +1,10 @@
 import Hospital from "../models/hospital.model.js";
 import Donor from "../models/donor.model.js";
 import BloodRequest from "../models/bloodR.modle.js";
+import Notification from "../models/notification.model.js";
 import bcrypt from "bcryptjs";
 import { generateTokenAndSetCookie } from "../lib/utils/generateToken.js";
+import { sendEmailNotification } from "../lib/utils/sendEmail.js";
 
 // ---- AUTH ----
 
@@ -118,6 +120,37 @@ export const createBloodRequest = async (req, res) => {
         });
 
         await newRequest.save();
+
+        // Find matching donors: same blood type and active
+        const matchingDonors = await Donor.find({
+            bloodType,
+            active: true
+        });
+
+        // Create in-app notifications and send emails
+        for (const donor of matchingDonors) {
+            const message = `Urgent ${emergencyLevel} blood request! ${requiredUnits} unit(s) of ${bloodType} needed at ${req.user.name}.`;
+
+            await Notification.create({
+                donorId: donor._id,
+                bloodRequestId: newRequest._id,
+                message
+            });
+
+            // Send email notification
+            if (donor.email) {
+                sendEmailNotification(
+                    donor.email,
+                    donor.name,
+                    bloodType,
+                    emergencyLevel,
+                    req.user.name,
+                    req.user.address,
+                    requiredUnits
+                );
+            }
+        }
+
         res.status(201).json(newRequest);
     } catch (error) {
         console.log("Error in createBloodRequest:", error.message);

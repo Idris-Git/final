@@ -7,6 +7,12 @@ import {
     acceptRequest,
     getDonationHistory
 } from "../controllers/donor.controller.js";
+import {
+    getNotifications,
+    getUnreadCount,
+    markAsRead,
+    markAllAsRead
+} from "../controllers/notification.controller.js";
 
 const router = express.Router();
 
@@ -24,5 +30,11 @@ router.put("/requests/:id/accept", protectRoute, authorizeRoles("donor"), accept
 
 // View donation history
 router.get("/history", protectRoute, authorizeRoles("donor"), getDonationHistory);
+
+// Notifications (static routes BEFORE :id routes)
+router.get("/notifications", protectRoute, authorizeRoles("donor"), getNotifications);
+router.get("/notifications/unread-count", protectRoute, authorizeRoles("donor"), getUnreadCount);
+router.put("/notifications/read-all", protectRoute, authorizeRoles("donor"), markAllAsRead);
+router.put("/notifications/:id/read", protectRoute, authorizeRoles("donor"), markAsRead);
 
 export default router;

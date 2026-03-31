@@ -29,12 +29,13 @@ app.use("/api/admin", adminRoutes);         // Admin auth + management
 app.use("/api/donor", donorRoutes);         // Donor functionality
 app.use("/api/posts", postRoutes);          // Public posts
 
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "frontend/dist")));
-    app.get(/^\/(?!api).*/, (req, res) => {
-        res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
-    });
-} 
+const distPath = path.join(__dirname, "frontend", "dist");
+app.use(express.static(distPath));
+
+// Catch-all: serve React app for non-API routes
+app.get("/{*splat}", (req, res) => {
+    res.sendFile(path.join(distPath, "index.html"));
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import logo from "../assets/Waridak.png";
 import "../styles/Navbar.css";
@@ -6,6 +7,25 @@ import "../styles/Navbar.css";
 const Navbar = () => {
   const { user, role, logout } = useAuth();
   const navigate = useNavigate();
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  useEffect(() => {
+    if (user && role === "donor") {
+      fetchUnreadCount();
+      const interval = setInterval(fetchUnreadCount, 30000);
+      return () => clearInterval(interval);
+    }
+  }, [user, role]);
+
+  const fetchUnreadCount = async () => {
+    try {
+      const res = await fetch("/api/donor/notifications/unread-count");
+      const data = await res.json();
+      if (res.ok) setUnreadCount(data.count);
+    } catch {
+      // ignore
+    }
+  };
 
   const handleLogout = async () => {
     await logout();
@@ -28,6 +48,12 @@ const Navbar = () => {
           {user && role === "donor" && (
             <>
               <li id="linksnav"><Link to="/donor">Dashboard</Link></li>
+              <li id="linksnav">
+                <Link to="/donor/notifications" className="notif-link">
+                  Notifications
+                  {unreadCount > 0 && <span className="notif-badge">{unreadCount}</span>}
+                </Link>
+              </li>
               <li id="linksnav"><Link to="/donor/history">History</Link></li>
               <li id="linksnav"><Link to="/donor/settings">Settings</Link></li>
             </>

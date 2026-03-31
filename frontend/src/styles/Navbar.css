@@ -39,3 +39,24 @@
   width: 4rem;
   margin-right: 10px;
 }
+
+/* Notification badge */
+.notif-link {
+  position: relative;
+}
+
+.notif-badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background-color: #ff3b3b;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
